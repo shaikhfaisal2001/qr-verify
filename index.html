@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QR Verification</title>
+
+  <!-- Mobile-safe redirect -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    const APPS_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbx4ThsAeYPeMmb6y0q-pDioX2kTKpdCG5vFWd5pWjzsYGhBYeeCLZ7DVr5AE52PQxGM/exec";
+
+    // Read hall ticket from QR
+    const params = new URLSearchParams(window.location.search);
+    const ht = params.get("ht");
+
+    if (ht) {
+      // Safe redirect (works on Android)
+      window.location.replace(
+        APPS_SCRIPT_URL + "?ht=" + encodeURIComponent(ht)
+      );
+    } else {
+      document.write("Invalid QR Code");
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    JavaScript is required to verify this QR code.
+  </noscript>
+</body>
+</html>
